@@ -40,11 +40,21 @@ function make_re()
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/graph', function () {
+    $wavedrom = rq('wavedrom');
+    return view('admin.graph', ['wavedrom' => $wavedrom]);
+});
 
 Route::prefix('/api')->group(function () {
-    Route::any('/user/register', 'UserController@user_register');
-    Route::any('/user/login', 'UserController@user_login');
-    Route::get('/user/logout', 'UserController@user_logout');
-    Route::any('/user/check', 'UserController@check_username_or_email');
-    Route::any('/user/get', 'UserController@get_user_info');
+    Route::prefix('/user')->group(function () {
+        Route::any('/register', 'UserController@user_register');
+        Route::any('/login', 'UserController@user_login');
+        Route::get('/logout', 'UserController@user_logout');
+        Route::any('/check', 'UserController@check_username_or_email');
+        Route::any('/get', 'UserController@get_user_info');
+    });
+
+    Route::prefix('/announcement')->group(function () {
+        Route::any('/get', 'AnnouncementController@get');
+    });
 });

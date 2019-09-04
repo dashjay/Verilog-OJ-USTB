@@ -2,44 +2,53 @@
     <div>
         <Form ref="formRegister" :model="formRegister" :rules="ruleRegister">
             <FormItem prop="username">
-                <Input type="text" v-model="formRegister.username" :placeholder="$t('m.RegisterUsername')" size="large"
-                       @on-enter="handleRegister">
-                    <Icon type="ios-person-outline" slot="prepend"></Icon>
-                </Input>
+                <label>
+                    <Input type="text" v-model="formRegister.username" :placeholder="$t('m.RegisterUsername')"
+                           size="large"
+                           @on-enter="handleRegister">
+                        <Icon type="ios-person-outline" slot="prepend"></Icon>
+                    </Input>
+                </label>
             </FormItem>
             <FormItem prop="email">
-                <Input v-model="formRegister.email" :placeholder="$t('m.Email_Address')" size="large"
-                       @on-enter="handleRegister">
-                    <Icon type="ios-email-outline" slot="prepend"></Icon>
-                </Input>
+                <label>
+                    <Input v-model="formRegister.email" :placeholder="$t('m.Email_Address')" size="large"
+                           @on-enter="handleRegister">
+                        <Icon type="ios-email-outline" slot="prepend"></Icon>
+                    </Input>
+                </label>
             </FormItem>
             <FormItem prop="password">
-                <Input type="password" v-model="formRegister.password" :placeholder="$t('m.RegisterPassword')"
-                       size="large" @on-enter="handleRegister">
-                    <Icon type="ios-locked-outline" slot="prepend"></Icon>
-                </Input>
+                <label>
+                    <Input type="password" v-model="formRegister.password" :placeholder="$t('m.RegisterPassword')"
+                           size="large" @on-enter="handleRegister">
+                        <Icon type="ios-locked-outline" slot="prepend"></Icon>
+                    </Input>
+                </label>
             </FormItem>
             <FormItem prop="passwordAgain">
-                <Input type="password" v-model="formRegister.passwordAgain" :placeholder="$t('m.Password_Again')"
-                       size="large" @on-enter="handleRegister">
-                    <Icon type="ios-locked-outline" slot="prepend"></Icon>
-                </Input>
+                <label>
+                    <Input type="password" v-model="formRegister.passwordAgain" :placeholder="$t('m.Password_Again')"
+                           size="large" @on-enter="handleRegister">
+                        <Icon type="ios-locked-outline" slot="prepend"></Icon>
+                    </Input>
+                </label>
             </FormItem>
-            <FormItem prop="captcha" style="margin-bottom:10px">
-                <div class="oj-captcha">
-                    <div class="oj-captcha-code">
-                        <Input v-model="formRegister.captcha" :placeholder="$t('m.Captcha')" size="large"
-                               @on-enter="handleRegister">
-                            <Icon type="ios-lightbulb-outline" slot="prepend"></Icon>
-                        </Input>
-                    </div>
-                    <div class="oj-captcha-img">
-                        <Tooltip content="Click to refresh" placement="top">
-                            <img :src="captchaSrc" @click="getCaptchaSrc"/>
-                        </Tooltip>
-                    </div>
-                </div>
-            </FormItem>
+            <!--            <FormItem prop="captcha" style="margin-bottom:10px">-->
+            <!--                <div class="oj-captcha">-->
+            <!--                    <div class="oj-captcha-code">-->
+            <!--                        <Input v-model="formRegister.captcha" :placeholder="$t('m.Captcha')" size="large"-->
+            <!--                               @on-enter="handleRegister">-->
+            <!--                            <Icon type="ios-lightbulb-outline" slot="prepend"></Icon>-->
+            <!--                        </Input>-->
+            <!--                    </div>-->
+            <!--                    <div class="oj-captcha-img">-->
+            <!--                        <Tooltip content="Click to refresh" placement="top">-->
+            <!--                            <img :src="captchaSrc" @click="getCaptchaSrc"/>-->
+            <!--                        </Tooltip>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </FormItem>-->
         </Form>
         <div class="footer">
             <Button
@@ -50,7 +59,7 @@
                 {{$t('m.UserRegister')}}
             </Button>
             <Button
-                    type="ghost"
+                    type="warning"
                     @click="switchMode('login')"
                     class="btn" long>
                 {{$t('m.Already_Registed')}}
@@ -62,10 +71,10 @@
 <script>
     import {mapGetters, mapActions} from 'vuex'
     import api from '@/pages/api'
-    // import {FormMixin} from '@/pages/components/mixins'
+    import {FormMixin} from '@/pages/components/mixins'
 
     export default {
-        // mixins: [FormMixin],
+        mixins: [FormMixin],
         mounted() {
             // this.getCaptchaSrc()
         },
@@ -139,14 +148,15 @@
             }
         },
         methods: {
-            // ...mapActions(['changeModalStatus', 'getProfile']),
-            // switchMode(mode) {
-            //     this.changeModalStatus({
-            //         mode,
-            //         visible: true
-            //     })
-            // },
-            //注册操作
+            ...mapActions(['changeModalStatus', 'getProfile']),
+            switchMode(mode) {
+                this.changeModalStatus({
+                    title: mode,
+                    mode: mode,
+                    visible: true
+                })
+            },
+            // 注册操作
             handleRegister() {
                 //表单合法
                 this.validateForm('formRegister').then(valid => {
@@ -158,20 +168,19 @@
                     this.btnRegisterLoading = true;
                     //使用axios发送请求
                     api.register(formData).then(res => {
-                        //
-                        this.$success('Thanks for your registering, you can login now');
-                        this.switchMode('login');
-                        this.btnRegisterLoading = false
-                    }, _ => {
-                        this.getCaptchaSrc();
-                        this.formRegister.captcha = '';
-                        this.btnRegisterLoading = false
+                        if (res.data.status) {
+                            this.$success('Thanks for your registering, you can login now');
+                            this.switchMode('login');
+                            this.btnRegisterLoading = false
+                        } else {
+                            this.$error(res.data.msg);
+                        }
                     })
                 })
             }
         },
         computed: {
-            // ...mapGetters(['website', 'modalStatus'])
+            ...mapGetters(['website', 'modalStatus'])
         }
     }
 </script>

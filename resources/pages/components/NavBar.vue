@@ -2,8 +2,7 @@
     <div id="header">
         <Menu theme="light" mode="horizontal" @on-select="handleRoute" :active-name="activeMenu" class="oj-menu">
             <div class="logo"><span>
-                Verilog_OJ
-                <!--                {{website.website_name}}-->
+                {{website.title}}
             </span></div>
             <Menu-item name="/">
                 <Icon type="home"></Icon>
@@ -54,7 +53,7 @@
                             @click="handleBtnClick('login')">{{$t('m.Login')}}
                     </Button>
                     <Button
-
+                            v-if="website.allow_register"
                             shape="circle"
                             @click="handleBtnClick('register')"
                             style="margin-left: 5px;">{{$t('m.Register')}}
@@ -77,7 +76,7 @@
             </template>
         </Menu>
         <Modal v-model="modalVisible" :width="400">
-            <div slot="header" class="modal-title">Welcome to USTB OJ</div>
+            <div slot="header" class="modal-title">{{modalStatus.title}}</div>
             <component :is="modalStatus.mode" v-if="modalVisible"></component>
             <div slot="footer" style="display: none"></div>
         </Modal>
@@ -85,13 +84,14 @@
 </template>
 
 <script>
+
     import {mapGetters, mapActions} from 'vuex'
-    // import login from '@/pages/views/user/Login'
-    import register from '@/pages/views/user/Register'
+    import {login,register} from '@/pages/views'
+
 
     export default {
         components: {
-            // login,
+            login,
             register
         },
         mounted() {
@@ -100,29 +100,24 @@
         },
         methods: {
             ...mapActions(['getProfile', 'changeModalStatus', 'clearProfile']),
+
             handleRoute(route) {
-                switch (route) {
-                    case '/logout':
-                        this.Logout();
-                        window.location.reload();
-                        break;
-                    case '/user-home':
-                        console.log('user-home');
-                        break;
-                    case '/setting':
-                        console.log('setting');
-                        break;
-                    default:
-                        console.log('FUCK_YOU');
+                if (this.$route.path === route) {
+                    return 0;
                 }
-                // if (route && route.indexOf('admin') < 0) {
-                //     this.$router.push(route)
-                // } else {
-                //     window.open('/admin/')
-                // }
+                if (route === '/logout') {
+                    this.Logout();
+                    window.location.reload();
+                }
+                if (route && route.indexOf('admin') < 0) {
+                    this.$router.push(route);
+                } else {
+                    window.open('/admin/')
+                }
             },
             handleBtnClick(mode) {
                 this.changeModalStatus({
+                    title: mode,
                     visible: true,
                     mode: mode
                 })
@@ -133,7 +128,7 @@
             }
         },
         computed: {
-            ...mapGetters(['isAuthenticated', 'modalStatus', 'user']),
+            ...mapGetters(['isAuthenticated', 'modalStatus', 'user', 'website']),
             // 跟随路由变化
             activeMenu() {
                 return 'test';

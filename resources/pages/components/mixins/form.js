@@ -1,4 +1,4 @@
-import api from '@oj/api'
+import api from '@/pages/api'
 
 export default {
   data () {
@@ -18,10 +18,10 @@ export default {
         })
       })
     },
-    getCaptchaSrc () {
-      api.getCaptcha().then(res => {
-        this.captchaSrc = res.data.data
-      })
-    }
+    // getCaptchaSrc () {
+    //   api.getCaptcha().then(res => {
+    //     this.captchaSrc = res.data.data
+    //   })
+    // }
   }
 }

@@ -1,12 +1,12 @@
 import Vue from 'vue'
-import store from '@/store'
+// import store from '@/store'
 import axios from 'axios'
 
 
 Vue.prototype.$http = axios;
 axios.defaults.baseURL = '/api';
-axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-axios.defaults.xsrfCookieName = 'csrftoken';
+// axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+// axios.defaults.xsrfCookieName = 'csrftoken';
 
 
 //所有的api
@@ -22,11 +22,14 @@ export default {
     getUserInfo() {
         return ajax('user/get', 'get');
     },
-    Login(data) {
+    login(data) {
         return ajax('user/login', 'post', {data})
     },
     Logout() {
-        return ajax('user/logout', 'get')
+        return ajax('user/logout', 'get');
+    },
+    getAnnouncement() {
+        return ajax('announcement/get', 'get');
     }
 }
 

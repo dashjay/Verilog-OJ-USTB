@@ -11,7 +11,11 @@ Vue.use(Vuex);
 const debug = process.env.NODE_ENV !== 'production';
 
 const rootState = {
-    website: {},
+    website: {
+        title: 'USTBOJ',
+        allow_register: true,
+        footer: 'USTB VERILOG OJ'
+    },
     modalStatus: {
         mode: 'login', // or 'register',
         visible: false

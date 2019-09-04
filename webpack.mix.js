@@ -16,9 +16,10 @@ mix.webpackConfig({
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'resources'),
+            '_c': path.resolve(__dirname, 'resources/pages/components')
         }
     }
 });
 
 
-mix.js('resources/pages/index.js', 'public/js');
+mix.js('resources/pages/index.js', 'public/js').js('resources/views/admin/admin.js', 'public/js')
