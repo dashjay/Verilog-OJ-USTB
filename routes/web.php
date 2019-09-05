@@ -26,6 +26,27 @@ function make_re()
     return new ResponseMaker();
 }
 
+function post($url, $data)
+{
+
+    $postdata =
+        http_build_query(
+            $data
+        );
+
+    $opts = array('http' =>
+        array(
+            'method' => 'POST',
+            'header' => 'Content-type: application/x-www-form-urlencoded',
+            'content' => $postdata
+
+        )
+    );
+    $context = stream_context_create($opts);
+    $result = file_get_contents($url, false, $context);
+    return $result;
+}
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,4 +78,14 @@ Route::prefix('/api')->group(function () {
     Route::prefix('/announcement')->group(function () {
         Route::any('/get', 'AnnouncementController@get');
     });
+    Route::prefix('/problem')->group(function () {
+        Route::get('/get_tags', 'ProblemController@getProblemTagList');
+        Route::get('/get', 'ProblemController@getProblemList');
+    });
+
+    Route::prefix('/solution')->group(function () {
+        Route::post('/add', 'SolutionController@add');
+    });
+
+
 });

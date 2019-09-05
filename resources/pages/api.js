@@ -30,6 +30,45 @@ export default {
     },
     getAnnouncement() {
         return ajax('announcement/get', 'get');
+    },
+    pickone() {
+        return ajax('/problem/pickone', 'get');
+    },
+    getProblemTagList() {
+        return ajax('/problem/get_tags', 'get');
+    },
+    getProblemList(offset, limit, query) {
+        let params = {
+            offset,
+            limit,
+            query
+        };
+        // Object.keys(searchParams).forEach((element) => {
+        //     if (searchParams[element]) {
+        //         params[element] = searchParams[element]
+        //     }
+        // });
+        return ajax('/problem/get', 'get', {
+            params: params
+        })
+    },
+    getProblem(problem_id) {
+        let params = {
+            problem_id
+        };
+
+        return ajax('/problem/get', 'get', {
+            params: params
+        })
+    },
+    doSubmitSolution(id, code) {
+        let data = {
+            id,
+            code
+        };
+        return ajax('/solution/add', 'post', {
+            data: data
+        })
     }
 }
 

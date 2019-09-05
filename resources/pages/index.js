@@ -9,6 +9,8 @@ import locale from 'iview/dist/locale/zh-CN'
 import 'iview/dist/styles/iview.css'
 import katex from '@/plugins/katex'
 import '@/style/index.less'
+
+
 import Kane from '@/pages/components/Panel.vue'
 import VerticalMenu from '@/pages/components/verticalMenu/verticalMenu.vue'
 import VerticalMenuItem from '@/pages/components/verticalMenu/verticalMenu-item.vue'

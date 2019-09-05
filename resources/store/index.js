@@ -43,13 +43,13 @@ const rootActions = {
     changeModalStatus({commit}, payload) {
         commit('updateModalStatus', payload);
     },
-//     changeDomTitle ({commit, state}, payload) {
-//         if (payload && payload.title) {
-//             window.document.title = state.website.website_name_shortcut + ' | ' + payload.title
-//         } else {
-//             window.document.title = state.website.website_name_shortcut + ' | ' + state.route.meta.title
-//         }
-//     }
+    changeDomTitle({commit, state}, payload) {
+        if (payload && payload.title) {
+            window.document.title = state.website.title + ' | ' + payload.title
+        } else {
+            window.document.title = state.website.title + ' | ' + state.route.meta.title
+        }
+    }
 };
 
 export default new Vuex.Store({

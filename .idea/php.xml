@@ -90,6 +90,7 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
       <path value="$PROJECT_DIR$/vendor/jxlwqq/code-mirror" />
       <path value="$PROJECT_DIR$/vendor/laravel-admin-ext/js-editor" />
+      <path value="$PROJECT_DIR$/vendor/laravel-admin-ext/media-manager" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />

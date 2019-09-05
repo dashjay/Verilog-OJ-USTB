@@ -3,11 +3,11 @@ import VueRouter from 'vue-router'
 import routes from './routes'
 
 Vue.use(VueRouter);
-import storage from '@/utils/storage'
+// import storage from '@/utils/storage'
 
 // import {sync} from 'vuex-router-sync'
 
-import store from '@/store'
+// import store from '@/store'
 //用constants存常量
 // import {STORAGE_KEY} from '@/utils/constants'
 

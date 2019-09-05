@@ -68,7 +68,8 @@ class AnnouncementController extends AdminController
         $form->text('title', __('Title'));
         $form->textarea('content', __('Content'));
         $form->select('created_by')->options('/admin/get_admin');
-//        $form->number('created_by', __('Created by'));
+
+//       $form->number('created_by', __('Created by'));
 
         return $form;
     }

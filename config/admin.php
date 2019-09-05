@@ -402,8 +402,17 @@ return [
 
             // Editor configuration
             'config' => [
-
+                'lineNumbers' => true,
+                'tabSize' => 4,
+                'theme' => 'monokai',
+                'styleSelectedText' => true,
+                'mode' => 'text/x-csrc',
             ]
-        ]
+        ],
+        'media-manager' => [
+
+            // Select a local disk that you configured in `config/filesystem.php`
+            'disk' => 'public'
+        ],
     ],
 ];

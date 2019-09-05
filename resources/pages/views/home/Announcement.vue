@@ -62,13 +62,13 @@
                 return 'Announcement'
             },
             total() {
-                return this.announcements.lentgh / this.limit;
+                return this.announcements.length;
             }
         },
         methods: {
             init() {
                 console.log('init');
-                this.getAnnouncement();
+                this.getAnnouncementList();
             },
             goBack() {
                 this.listVisible = true;
@@ -78,7 +78,7 @@
                 this.announcement = announcement;
                 this.listVisible = false
             },
-            getAnnouncement() {
+            getAnnouncementList() {
                 api.getAnnouncement().then(res => {
                     if (res.data.status) {
                         this.announcements = res.data.object;

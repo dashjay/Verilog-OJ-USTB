@@ -2,8 +2,10 @@
 
 namespace App\Admin\Controllers;
 
+use App\Tag;
 use Encore\Admin\Controllers\AdminController;
 use Illuminate\Support\Facades\DB;
+use test\Mockery\Adapter\Phpunit\BaseClassStub;
 
 
 class UtilController extends AdminController
@@ -29,6 +31,16 @@ class UtilController extends AdminController
         }
 
         // 返回结果
+        return $res;
+    }
+
+    public function get_tags(Tag $tag)
+    {
+        $res = [];
+        $temps = $tag->get(['name']);
+        foreach ($temps as $temp) {
+            array_push($res, $temp->name);
+        }
         return $res;
     }
 
