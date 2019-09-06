@@ -68,4 +68,19 @@ class ProblemController extends Controller
             array('problems' => $p, 'count' => $count));
     }
 
+    public function getWavedrom(Problem $problem)
+    {
+        $id = rq('id');
+        if (!$id) {
+            return make_re()->error('id is required');
+        }
+
+        $p = $problem->where('id', $id)->first();
+        if (!$p) {
+            return make_re()->error('problem not exists');
+        }
+
+        return make_re()->info_with_object('wavedrom returned', $p->wavedrom);
+    }
+
 }

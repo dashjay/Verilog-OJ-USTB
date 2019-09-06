@@ -7,10 +7,10 @@
                 <div id="problem-content" class="markdown-body" v-katex>
                     <p class="title">{{$t('m.Description')}}</p>
                     <p class="content" v-html=problem.description></p>
-                    <!-- {{$t('m.music')}} -->
-                    <!--                              <p class="title">{{$t('m.Input')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.FromFile')}}: {{ problem.io_mode.input }})</span></p>-->
+                    <!--                     {{$t('m.music')}}-->
+                    <!--                    <p class="title">{{// $t('m.Input')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.FromFile')}}: {{ problem.io_mode.input }})</span>-->
+                    <!--                    </p>-->
                     <p class="content" v-html=problem.content></p>
-                    <!--                    <img :src="'https://svg.wavedrom.com/' + (problem.wavedrom)">-->
 
                     <!--          <p class="title">{{$t('m.Output')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.ToFile')}}: {{ problem.io_mode.output }})</span></p>-->
                     <!--          <p class="content" v-html=problem.output_description></p>-->
@@ -42,11 +42,17 @@
                     <!--            </Card>-->
                     <!--          </div>-->
 
-                    <!--          <div v-if="problem.source">-->
-                    <!--            <p class="title">{{$t('m.Source')}}</p>-->
-                    <!--            <p class="content">{{problem.source}}</p>-->
-                    <!--          </div>-->
 
+                    <div class="content">
+                        <p class="title">你的做题情况</p>
+                        <Timeline>
+                            <TimelineItem v-for="solution in solutions" :key="solution">
+                                <p class="time">{{solution.created_at}}</p>
+                                <p class="content">{{solution.is_pass?'通过':'错误'}}</p>
+                            </TimelineItem>
+                        </Timeline>
+                        <p class="content"></p>
+                    </div>
                 </div>
             </Kane>
             <!--problem main end-->
@@ -70,7 +76,11 @@
                     <div slot="right" class="demo-split-pane">
                         <Card style="padding-left: 10px;height: 500px">
                             <p slot="title">波形</p>
-                            <iframe frameborder="0" height="400" width="450" :src="waveform" allowfullscreen
+                            <div>Yours</div>
+                            <iframe frameborder="0" height="200" width="450" :src="waveform" allowfullscreen
+                                    v-if="graph"></iframe>
+                            <div>Ref(Standard)</div>
+                            <iframe frameborder="0" height="200" width="450" :src="waveform_standard" allowfullscreen
                                     v-if="graph"></iframe>
                         </Card>
                     </div>
@@ -238,10 +248,12 @@
         mixins: [FormMixin],
         data() {
             return {
+                solutions: [],
                 waveform: "",
                 waveform_prefix: 'http://127.0.0.1:8000/graph?wavedrom=',
+                waveform_standard: '',
                 cmp_result: [],
-                split: 0.3,
+                split: 0.5,
                 graph: false,
                 statusVisible: false,
                 captchaRequired: false,
@@ -313,7 +325,18 @@
                         let problem = res.data.object;
                         this.changeDomTitle({title: problem.title});
                         this.problem = problem;
-                        this.code = problem.template
+                        this.code = problem.template;
+                        api.getSolutions(this.problem.id)
+                            .then(response => {
+                                if (response.data.status) {
+                                    this.solutions = response.data.object;
+                                }
+                            }).catch(error => {
+                            this.$Notice.error({
+                                title: '做题记录获取失败',
+                                desc: error
+                            })
+                        })
                     }
                     // TODO子任务之后再说
                     // api.submissionExists(problem.id).then(res => {
@@ -333,7 +356,7 @@
                     // }
                 }, () => {
                     this.$Loading.error()
-                })
+                });
             },
             // changePie(problemData) {
             //     // 只显示特定的一些状态
@@ -447,11 +470,13 @@
                 api.doSubmitSolution(this.problem.id, this.code)
                     .then(response => {
                         const info = () => {
-                            this.cmp_result = response.data.object.cmpresult.split('\n');
-                            this.waveform = this.waveform_prefix + response.data.object.signal;
+                            let result = response.data.object;
+                            this.cmp_result = result.cmpresult.split('\n');
+                            this.waveform = this.waveform_prefix + result.signal;
                             this.graph = true;
+                            // this.waveform_standard = this.waveform_prefix + result;
                         };
-                        if (response.data.status) {
+                        if (response.data.object.status) {
                             this.$Notice.info({
                                 title: '编译成功',
                                 desc: response.data.msg
@@ -471,6 +496,26 @@
                     console.log(error)
                 }).finally(_ => {
                     this.submitting = false;
+                    api.getStandardWavedrom(this.problem.id)
+                        .then(response => {
+                            if (response.data.status) {
+                                this.$Notice.info({
+                                    title: '获取标准波形成功',
+                                    desc: response.data.msg
+                                });
+                                this.waveform_standard = this.waveform_prefix + response.data.object;
+                            } else {
+                                this.$Notice.error({
+                                    title: '获取标准波形失败',
+                                    desc: response.data.msg
+                                });
+                            }
+                        }).catch(error => {
+                        this.$Notice.error({
+                            title: '获取标准波形失败',
+                            desc: error
+                        });
+                    })
                 })
                 // if (this.captchaRequired) {
                 //     data.captcha = this.captchaCode

@@ -81,10 +81,12 @@ Route::prefix('/api')->group(function () {
     Route::prefix('/problem')->group(function () {
         Route::get('/get_tags', 'ProblemController@getProblemTagList');
         Route::get('/get', 'ProblemController@getProblemList');
+        Route::get('/get_wavedrom', 'ProblemController@getWavedrom');
     });
 
     Route::prefix('/solution')->group(function () {
         Route::post('/add', 'SolutionController@add');
+        Route::get('/get', 'SolutionController@get');
     });
 
 

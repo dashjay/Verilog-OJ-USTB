@@ -15,6 +15,7 @@ class CreateSolutionsTable extends Migration
     {
         Schema::create('solutions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('question_id');
             $table->integer('user_id');
             $table->text('code');
             $table->json('wavedrom');

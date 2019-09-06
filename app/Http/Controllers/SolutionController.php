@@ -56,6 +56,7 @@ class SolutionController extends Controller
         $res = json_decode($result);
 
         $solution->user_id = $u->id;
+        $solution->question_id = $id;
         $solution->code = $code;
         $solution->wavedrom = $res->signal;
         $solution->svg = $res->svg;
@@ -74,12 +75,33 @@ class SolutionController extends Controller
         } else {
             $solution->is_pass = 0;
         }
+
         $solution->save();
 
         if ($solution->is_pass) {
-            return make_re()->info_with_object('you passed', $res);
+            return ['msg' => '你做对了', 'object' => $res, 'success' => 1];
         } else {
-            return make_re()->info_with_object('you out', $res);
+            return ['msg' => '你做错了', 'object' => $res, 'success' => 0];
+        }
+
+    }
+
+    public function get(Solution $solution)
+    {
+        $username = session('username');
+        $user = (new User())->user_find_by_username($username);
+        if (!$user) {
+            return make_re()->error('user not found, please relogin');
+        }
+        $id = rq('id');
+        if (!$id) {
+            return make_re()->error('id is required');
+        }
+        $s = $solution->where('user_id', $user->id)->where('question_id', $id)->get();
+        if ($s) {
+            return make_re()->info_with_object('solutions returned', $s);
+        } else {
+            return make_re()->error('no solutions');
         }
 
     }

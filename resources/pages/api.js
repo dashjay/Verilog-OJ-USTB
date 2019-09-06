@@ -69,6 +69,18 @@ export default {
         return ajax('/solution/add', 'post', {
             data: data
         })
+    },
+    getStandardWavedrom(id) {
+        let params = {id};
+        return ajax('/problem/get_wavedrom', 'get', {
+            params: params
+        })
+    },
+    getSolutions(id) {
+        let params = {id};
+        return ajax('/solution/get', 'get', {
+            params: params
+        })
     }
 }
 
