@@ -124,4 +124,9 @@ class User extends Model
     {
 
     }
+
+    public function batch()
+    {
+        return $this->belongsTo(Batch::class, 'batch_id');
+    }
 }

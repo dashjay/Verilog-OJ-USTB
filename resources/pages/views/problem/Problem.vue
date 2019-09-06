@@ -239,7 +239,7 @@
     import {pie, largePie} from './chartData'
 
     // 只显示这些状态的图形占用
-    const filtedStatus = ['-1', '-2', '0', '1', '2', '3', '4', '8'];
+    // const filtedStatus = ['-1', '-2', '0', '1', '2', '3', '4', '8'];
 
     export default {
         name: 'Problem',

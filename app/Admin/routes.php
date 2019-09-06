@@ -14,10 +14,14 @@ Route::group([
     $router->get('/problem_complete', 'ProblemController@make');
     $router->post('/problem/stim', 'ProblemController@stim');
     $router->post('/problem/complete', 'ProblemController@complete');
+    $router->post('/user/batchadd', 'UserController@batchadd');
+    $router->get('/user/template', 'UserController@get_template')->middleware('download');
 
     $router->resource('users', UserController::class);
     $router->resource('announcements', AnnouncementController::class);
     $router->resource('problems', ProblemController::class);
     $router->resource('tags', TagController::class);
     $router->resource('solutions', SolutionController::class);
+    $router->resource('batches', BatchController::class);
+
 });

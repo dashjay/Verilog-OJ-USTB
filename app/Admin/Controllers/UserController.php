@@ -7,6 +7,8 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Rap2hpoutre\FastExcel\FastExcel;
+
 
 class UserController extends AdminController
 {
@@ -15,7 +17,7 @@ class UserController extends AdminController
      *
      * @var string
      */
-    protected $title = 'App\User';
+    protected $title = '学生管理';
 
     /**
      * Make a grid builder.
@@ -26,12 +28,16 @@ class UserController extends AdminController
     {
         $grid = new Grid(new User);
 
+        $grid->header(function () {
+            return view('admin.tools.batchadd');
+        });
+
         $grid->column('id', __('Id'));
         $grid->column('username', __('Username'));
         $grid->column('intro', __('Intro'));
         $grid->column('avatar', __('Avatar'));
         $grid->column('email', __('Email'));
-        $grid->column('password', __('Password'));
+//        $grid->column('password', __('Password'));
         $grid->column('remember_token', __('Remember token'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
@@ -79,5 +85,33 @@ class UserController extends AdminController
         $form->text('remember_token', __('Remember token'));
 
         return $form;
+    }
+
+    public function batchadd()
+    {
+        $file = rqf('batch');
+        if (!$file) {
+            return make_re()->error('上传了个屁');
+        }
+        $count = 0;
+        $collection = (new FastExcel)->import($file);
+
+        foreach ($collection as $u) {
+            $user = new User();
+            $user->user_add($u['username'], $u['password']);
+            $count++;
+        }
+        return make_re()->info('新增了' . $count . '个学生');
+    }
+
+
+    public function get_template()
+    {
+        $list = collect([
+            ['username' => '41724235', 'password' => '41724235'],
+            ['username' => '41824235', 'password' => '41824235'],
+        ]);
+        return (new FastExcel($list))->download('template.xlsx');
+
     }
 }
