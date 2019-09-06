@@ -1,13 +1,13 @@
 <html lang="">
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
-    <title>FUCKYOURMOTHER</title>
+    <title></title>
 </head>
 
 <input type="file" id="multiply" class="input-large">
 <button onclick="upload()" class="btn-primary" style="margin-top: 5px">批量添加</button>
-{{--<button class="btn-danger"><a href="/template.jpg" download>下载模板文件</a></button>--}}
-<img src="/template.jpg" alt="" width="15%">
+<button class="btn-danger"><a href="/template.xlsx" target="_blank">下载模板文件</a></button>
+{{--<img src="/template.jpg" alt="" width="15%">--}}
 <script>
     function upload() {
         var form = new FormData();
