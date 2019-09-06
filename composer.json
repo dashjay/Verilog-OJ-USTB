@@ -16,7 +16,8 @@
         "laravel-admin-ext/js-editor": "^1.0",
         "laravel-admin-ext/media-manager": "^1.0",
         "laravel/framework": "5.8.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "orangehill/iseed": "^2.6"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
