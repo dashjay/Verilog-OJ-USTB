@@ -228,6 +228,7 @@
 </template>
 
 <script>
+    import env from '@/pages/const.js'
     import {mapGetters, mapActions} from 'vuex'
     // import {types} from '../../../../store'
     import CodeMirror from '@/pages/components/CodeMirror.vue'
@@ -250,7 +251,7 @@
             return {
                 solutions: [],
                 waveform: "",
-                waveform_prefix: 'http://127.0.0.1:8000/graph?wavedrom=',
+                waveform_prefix: env.app_url + '/graph?wavedrom=',
                 waveform_standard: '',
                 cmp_result: [],
                 split: 0.5,

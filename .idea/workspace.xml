@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85571b39-d2a6-483d-b1a6-c9c1a475c395" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Verilog-OJ-USTB.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Verilog-OJ-USTB.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/pages/const.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/pages/views/problem/Problem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/pages/views/problem/Problem.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,6 +44,13 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="verilog_oj_ustb: schema" type="76f4a085:MysqlImplModel$Schema" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="verilog_oj_ustb@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="verilog_oj_ustb: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="admin_menu: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
     </expand>
     <select />
   </component>
@@ -57,16 +61,12 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="207">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/seeds/UsersTableSeeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-100" />
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/seeds/AdminUsersTableSeeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-393" />
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -102,7 +102,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="das://21487241-c2bb-4259-b261-917f1b7b4150/schema/verilog_oj_ustb/table/admin_role_permissions">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
@@ -114,21 +114,59 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/SolutionsTableSeeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="332" column="8" selection-start-line="332" selection-start-column="8" selection-end-line="332" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="das://21487241-c2bb-4259-b261-917f1b7b4150/schema/verilog_oj_ustb/table/announcements">
+        <entry file="das://21487241-c2bb-4259-b261-917f1b7b4150/schema/verilog_oj_ustb/table/admin_menu">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
               <filtering enabled="true">
                 <filter text="" />
               </filtering>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/pages/views/problem/Problem.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-344">
+              <caret line="230" column="11" lean-forward="true" selection-start-line="230" selection-start-column="11" selection-end-line="230" selection-end-column="11" />
+              <folding>
+                <element signature="n#style#0;n#Card#0;n#div#0;n#Split#0;n#Card#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#Card#0;n#div#1;n#Split#0;n#Card#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#VerticalMenu#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#Card#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="e#14046#14080#0" expanded="true" />
+                <element signature="e#14396#14425#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/pages/const.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/pages/api.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1150">
+              <caret line="80" column="30" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
+              <folding>
+                <element signature="e#288#348#0" />
+                <element signature="e#392#489#0" />
+                <element signature="e#509#556#0" />
+                <element signature="e#574#631#0" />
+                <element signature="e#646#696#0" />
+                <element signature="e#720#775#0" />
+                <element signature="e#791#846#0" />
+                <element signature="e#872#928#0" />
+                <element signature="e#1376#1524#0" />
+                <element signature="e#1557#1710#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -139,8 +177,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="XSLT Stylesheet" />
-        <option value="JavaScript File" />
         <option value="Vue Single File Component" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -183,7 +221,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/pages/views/user/login.vue" />
         <option value="$PROJECT_DIR$/resources/utils/utils.js" />
         <option value="$PROJECT_DIR$/resources/pages/components/NavBar.vue" />
         <option value="$PROJECT_DIR$/resources/pages/App.vue" />
@@ -232,8 +269,9 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/SolutionController.php" />
         <option value="$PROJECT_DIR$/resources/pages/api.js" />
         <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/resources/pages/views/problem/Problem.vue" />
         <option value="$PROJECT_DIR$/config/app.php" />
+        <option value="$PROJECT_DIR$/resources/pages/const.js" />
+        <option value="$PROJECT_DIR$/resources/pages/views/problem/Problem.vue" />
       </list>
     </option>
   </component>
@@ -331,7 +369,7 @@
       <path value="$PROJECT_DIR$/vendor/orangehill/iseed" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1680" />
     <option name="height" value="976" />
@@ -355,13 +393,23 @@
             <path>
               <item name="Verilog-OJ-USTB" type="b2602c69:ProjectViewProjectNode" />
               <item name="Verilog-OJ-USTB" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Verilog-OJ-USTB" type="b2602c69:ProjectViewProjectNode" />
               <item name="Verilog-OJ-USTB" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="seeds" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Verilog-OJ-USTB" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Verilog-OJ-USTB" type="462c0819:PsiDirectoryNode" />
+              <item name="storage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Verilog-OJ-USTB" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Verilog-OJ-USTB" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -438,17 +486,18 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79556000" />
+    <option name="totallyTimeSpent" value="79843000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="976" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.5026362" side_tool="true" weight="0.1720297" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.4973638" visible="true" weight="0.27970296" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.4973638" visible="true" weight="0.22339109" />
       <window_info id="Structure" order="3" sideWeight="0.5027523" side_tool="true" weight="0.1720297" />
       <window_info anchor="bottom" id="SmartIM" order="0" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="1" visible="true" weight="0.44172496" />
+      <window_info anchor="bottom" id="Terminal" order="1" visible="true" weight="0.36130536" />
       <window_info anchor="bottom" id="Database Changes" order="2" />
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="4" />
@@ -462,7 +511,7 @@
       <window_info anchor="bottom" id="TODO" order="12" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32983682" />
       <window_info anchor="bottom" id="TypeScript" order="14" />
-      <window_info anchor="right" id="Database" order="0" visible="true" weight="0.21101485" />
+      <window_info anchor="right" id="Database" order="0" weight="0.21101485" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
@@ -472,13 +521,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/pages/router/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="21" column="6" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/pages/router/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -692,38 +734,6 @@
     <entry file="file://$PROJECT_DIR$/app/Solution.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/pages/views/problem/Problem.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="51" column="43" selection-start-line="51" selection-start-column="43" selection-end-line="51" selection-end-column="43" />
-          <folding>
-            <element signature="n#style#0;n#Card#0;n#div#0;n#Split#0;n#Card#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#Card#0;n#div#1;n#Split#0;n#Card#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#VerticalMenu#0;n#div#1;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#Card#0;n#div#1;n#div#0;n#template#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/pages/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1150">
-          <caret line="80" column="30" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
-          <folding>
-            <element signature="e#288#348#0" />
-            <element signature="e#392#489#0" />
-            <element signature="e#509#556#0" />
-            <element signature="e#574#631#0" />
-            <element signature="e#646#696#0" />
-            <element signature="e#720#775#0" />
-            <element signature="e#791#846#0" />
-            <element signature="e#872#928#0" />
-            <element signature="e#1376#1524#0" />
-            <element signature="e#1557#1710#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/pages/App.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -825,7 +835,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/SolutionsTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
+        <state relative-caret-position="8300">
           <caret line="332" column="8" selection-start-line="332" selection-start-column="8" selection-end-line="332" selection-end-column="8" />
         </state>
       </provider>
@@ -840,14 +850,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/UsersTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-100" />
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/AdminUsersTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-393" />
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="das://21487241-c2bb-4259-b261-917f1b7b4150/schema/verilog_oj_ustb/table/admin_user_permissions">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
@@ -900,6 +906,47 @@
           <filtering enabled="true">
             <filter text="" />
           </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/pages/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1150">
+          <caret line="80" column="30" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
+          <folding>
+            <element signature="e#288#348#0" />
+            <element signature="e#392#489#0" />
+            <element signature="e#509#556#0" />
+            <element signature="e#574#631#0" />
+            <element signature="e#646#696#0" />
+            <element signature="e#720#775#0" />
+            <element signature="e#791#846#0" />
+            <element signature="e#872#928#0" />
+            <element signature="e#1376#1524#0" />
+            <element signature="e#1557#1710#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/pages/const.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/pages/views/problem/Problem.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-344">
+          <caret line="230" column="11" lean-forward="true" selection-start-line="230" selection-start-column="11" selection-end-line="230" selection-end-column="11" />
+          <folding>
+            <element signature="n#style#0;n#Card#0;n#div#0;n#Split#0;n#Card#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Card#0;n#div#1;n#Split#0;n#Card#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#VerticalMenu#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#Card#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="e#14046#14080#0" expanded="true" />
+            <element signature="e#14396#14425#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
