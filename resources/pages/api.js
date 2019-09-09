@@ -81,6 +81,12 @@ export default {
         return ajax('/solution/get', 'get', {
             params: params
         })
+    },
+    getSolutionInfo(id) {
+        let params = {id};
+        return ajax('/solution/get_info', 'get', {
+            params: params
+        });
     }
 }
 

@@ -7,8 +7,6 @@ use App\Problem;
 use App\Solution;
 use App\User;
 use Illuminate\Support\Facades\DB;
-use function MongoDB\BSON\toPHP;
-use function PHPSTORM_META\type;
 
 class SolutionController extends Controller
 {
@@ -104,5 +102,22 @@ class SolutionController extends Controller
             return make_re()->error('no solutions');
         }
 
+    }
+
+    public function get_info(Solution $solution)
+    {
+        $id = rq('id');
+        if (!$id) {
+            return make_re()->error('id (question) is required');
+        }
+
+        $total = $solution->where('question_id', $id)->count();
+        $pass = $solution->where('question_id', $id)->where('is_pass', 1)->count();
+
+        return make_re()->info_with_object('question info returned',
+            array(
+                'total' => $total,
+                'pass' => $pass
+            ));
     }
 }

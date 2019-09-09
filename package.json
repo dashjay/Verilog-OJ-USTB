@@ -37,6 +37,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "echarts": "^4.2.1",
+    "file-saver": "^2.0.2",
     "highlight.js": "^9.15.10",
     "iview": "^3.5.0-rc.1",
     "katex": "^0.10.0",

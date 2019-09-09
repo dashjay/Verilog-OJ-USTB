@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('username')->comment('用户名');
             $table->string('intro')->nullable()->comment('自我介绍')->nullable();
+            $table->integer('batch_id')->nullable()->comment('小组');
             $table->string('avatar', 64)->comment('头像')->nullable();
             $table->string('email')->unique()->comment('邮箱')->nullable();
             $table->string('password')->comment('密码的HASH');

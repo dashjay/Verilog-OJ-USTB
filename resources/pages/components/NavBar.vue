@@ -12,32 +12,32 @@
                 <Icon type="ios-keypad"></Icon>
                 {{$t('m.NavProblems')}}
             </Menu-item>
-            <Menu-item name="/contests">
-                <Icon type="trophy"></Icon>
-                {{$t('m.Contests')}}
-            </Menu-item>
-            <Menu-item name="/status">
+            <!--            <Menu-item name="/contests">-->
+            <!--                <Icon type="trophy"></Icon>-->
+            <!--                {{$t('m.Contests')}}-->
+            <!--            </Menu-item>-->
+            <Menu-item name="/rank">
                 <Icon type="ios-pulse-strong"></Icon>
-                {{$t('m.NavStatus')}}
+                {{$t('m.Rank')}}
             </Menu-item>
-            <Submenu name="rank">
-                <template slot="title">
-                    <Icon type="podium"></Icon>
-                    {{$t('m.Rank')}}
-                </template>
-                <Menu-item name="/acm-rank">
-                    {{$t('m.ACM_Rank')}}
-                </Menu-item>
-                <Menu-item name="/oi-rank">
-                    {{$t('m.OI_Rank')}}
-                </Menu-item>
-            </Submenu>
+            <!--            <Submenu name="rank">-->
+            <!--                <template slot="title">-->
+            <!--                    <Icon type="podium"></Icon>-->
+            <!--                    {{$t('m.Rank')}}-->
+            <!--                </template>-->
+            <!--                <Menu-item name="/acm-rank">-->
+            <!--                    {{$t('m.ACM_Rank')}}-->
+            <!--                </Menu-item>-->
+            <!--                <Menu-item name="/oi-rank">-->
+            <!--                    {{$t('m.OI_Rank')}}-->
+            <!--                </Menu-item>-->
+            <!--            </Submenu>-->
             <Submenu name="about">
                 <template slot="title">
                     <Icon type="information-circled"></Icon>
                     {{$t('m.About')}}
                 </template>
-                <Menu-item name="/about">
+                <Menu-item name="/judger">
                     {{$t('m.Judger')}}
                 </Menu-item>
                 <Menu-item name="/FAQ">
@@ -45,7 +45,7 @@
                 </Menu-item>
             </Submenu>
             <template v-if="!isAuthenticated">
-                {{modalStatus}}
+<!--                {{modalStatus}}-->
                 <div class="btn-menu">
                     <Button
                             ref="loginBtn"
@@ -86,7 +86,7 @@
 <script>
 
     import {mapGetters, mapActions} from 'vuex'
-    import {login,register} from '@/pages/views'
+    import {login, register} from '@/pages/views'
 
 
     export default {
@@ -104,6 +104,9 @@
             handleRoute(route) {
                 if (this.$route.path === route) {
                     return 0;
+                }
+                if (route === '/judger') {
+                    window.location.href = 'https://github.com/dashjay/Verilog-Judge-USTB'
                 }
                 if (route === '/logout') {
                     this.Logout();

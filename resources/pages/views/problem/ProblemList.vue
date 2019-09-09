@@ -157,7 +157,7 @@
                     },
                     {
                         title: 'Total',
-                        key: 'submission_number'
+                        key: 'total'
                     },
                     // {
                     //     title: 'AC Rate',
@@ -213,11 +213,22 @@
                 let offset = (this.query.page - 1) * this.limit;
                 this.loadings.table = true;
                 api.getProblemList(offset, this.limit, this.query).then(res => {
+                    let problemList = [];
                     if (res.data.status) {
                         this.loadings.table = false;
                         this.total = res.data.object.count;
-                        this.problemList = res.data.object.problems;
+                        let temp = res.data.object.problems;
+
+                        for (let i = 0; i < temp.length; i++) {
+                            api.getSolutionInfo(temp[i].id).then(response => {
+                                temp[i].total = response.data.object.total;
+                                problemList.push(temp[i])
+                            })
+                        }
                     }
+
+                    this.problemList = problemList;
+
 
                     // if (this.isAuthenticated) {
                     //     this.addStatusColumn(this.problemTableColumns, res.data.data.results)
