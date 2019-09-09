@@ -87,6 +87,7 @@ Route::prefix('/api')->group(function () {
     Route::prefix('/solution')->group(function () {
         Route::post('/add', 'SolutionController@add');
         Route::get('/get', 'SolutionController@get');
+        Route::get('/get_info','SolutionController@get_info');
     });
 
 

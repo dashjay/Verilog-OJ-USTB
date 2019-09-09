@@ -1,4 +1,4 @@
-import {Home, Problem, ProblemList} from '../views'
+import {Home, Problem, ProblemList,FAQ} from '../views'
 
 
 export default [
@@ -20,4 +20,15 @@ export default [
         meta: {title: 'Problem Details'},
         component: Problem
     },
+    {
+        path: '/faq',
+        name: 'faq',
+        meta: {title: 'FAQ'},
+        component: FAQ
+    },
+    // {
+    //     path: '*',
+    //     meta: {title: '404'},
+    //     component: NotFound
+    // }
 ]

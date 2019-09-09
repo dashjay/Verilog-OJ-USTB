@@ -48,6 +48,7 @@ class ProblemController extends Controller
         $offset = rq('offset');
         $limit = rq('limit');
         $query = rq('query');
+
         if (!$query) {
             return make_re()->error('query is required');
         }
@@ -60,6 +61,7 @@ class ProblemController extends Controller
             ->skip($offset ? $offset : 0)
             ->take($limit ? $limit : 20)
             ->get();
+
 
         $count = count($problem->get());
 

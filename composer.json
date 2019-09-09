@@ -13,6 +13,7 @@
         "ext-json": "*",
         "encore/laravel-admin": "^1.7",
         "fideloper/proxy": "^4.0",
+        "jxlwqq/simditor": "^1.0",
         "laravel-admin-ext/js-editor": "^1.0",
         "laravel-admin-ext/media-manager": "^1.0",
         "laravel/framework": "5.8.*",

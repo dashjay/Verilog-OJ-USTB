@@ -5,23 +5,24 @@ use Illuminate\Routing\Router;
 Admin::routes();
 
 Route::group([
-    'prefix' => config('admin.route.prefix'),
-    'namespace' => config('admin.route.namespace'),
-    'middleware' => config('admin.route.middleware'),
+  'prefix' => config('admin.route.prefix'),
+  'namespace' => config('admin.route.namespace'),
+  'middleware' => config('admin.route.middleware'),
 ], function (Router $router) {
-    $router->get('/', 'HomeController@index')->name('admin.home');
-    $router->get('/get_admin', 'UtilController@get_admin');
-    $router->get('/problem_complete', 'ProblemController@make');
-    $router->post('/problem/stim', 'ProblemController@stim');
-    $router->post('/problem/complete', 'ProblemController@complete');
-    $router->post('/user/batchadd', 'UserController@batchadd');
-    $router->get('/user/template', 'UserController@get_template')->middleware('download');
+  $router->get('/', 'HomeController@index')->name('admin.home');
+  $router->get('/get_admin', 'UtilController@get_admin');
+  $router->get('/problem_complete', 'ProblemController@make');
+  $router->post('/problem/stim', 'ProblemController@stim');
+  $router->post('/problem/complete', 'ProblemController@complete');
+  $router->post('/user/batchadd', 'UserController@batchadd');
+  $router->get('/user/template', 'UserController@get_template')->middleware('download');
+  $router->post('upload', 'UtilController@upload');
 
-    $router->resource('users', UserController::class);
-    $router->resource('announcements', AnnouncementController::class);
-    $router->resource('problems', ProblemController::class);
-    $router->resource('tags', TagController::class);
-    $router->resource('solutions', SolutionController::class);
-    $router->resource('batches', BatchController::class);
+  $router->resource('users', UserController::class);
+  $router->resource('announcements', AnnouncementController::class);
+  $router->resource('problems', ProblemController::class);
+  $router->resource('tags', TagController::class);
+  $router->resource('solutions', SolutionController::class);
+  $router->resource('batches', BatchController::class);
 
 });

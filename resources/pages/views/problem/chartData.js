@@ -1,6 +1,6 @@
 const pieColorMap = {
-    'AC': {color: '#19be6b'},
-    'WA': {color: '#ed3f14'},
+    'pass': {color: '#19be6b'},
+    'fail': {color: '#ed3f14'},
     'TLE': {color: '#ff9300'},
     'MLE': {color: '#f7de00'},
     'RE': {color: '#ff6104'},
@@ -17,7 +17,7 @@ const pie = {
         left: 'center',
         top: '10',
         orient: 'horizontal',
-        data: ['AC', 'WA']
+        data: ['pass', 'fail']
     },
     series: [
         {
