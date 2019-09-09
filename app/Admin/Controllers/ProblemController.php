@@ -150,13 +150,22 @@ class ProblemController extends AdminController
     return $form;
   }
 
+  /**
+   * @param Content $content
+   * @param Problem $problem
+   * @return Content
+   * 对应的补全题目页面
+   */
   public function make(Content $content, Problem $problem)
   {
+    //获取到题目内容
     $p = $problem->where('id', rq('id'))->first();
+    if ($p) {
+      return make_re()->error('我知道你已经以为自己拿到ROOT正在搞这个网站，放心吧没啥好东西，别日了，缴枪不杀');
+    }
     return $content
       ->title($p->title . '的题目补全')
       ->description('题目内容简介:' . substr($p->content, 0, 150))
-//            ->row('<center><h1>针对题目</h1></center>')
       ->row(function (Row $row) {
         $row->column(16, function (Column $column) {
           $id = rq('id');
@@ -189,6 +198,11 @@ class ProblemController extends AdminController
     return post('http://127.0.0.1:33778/solve', $params);
   }
 
+  /**
+   * @param Problem $problem
+   * @return array
+   * 完成项目项目创建
+   */
   public function complete(Problem $problem)
   {
     $id = rq('id');
@@ -222,13 +236,11 @@ class ProblemController extends AdminController
     if ($svg) {
       $p->svg = $svg;
     }
-    $res = $p->save();
-    if ($res) {
+    if ($p->save()) {
       return make_re()->info('题目完善成功');
     } else {
       return make_re()->error('题目完善失败');
     }
-
   }
 
   //curl不管用了，还是post好用
