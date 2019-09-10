@@ -234,11 +234,8 @@
     // import mapGetters from 'vuex';
     import env from '@/pages/const.js';
     import {mapGetters, mapActions} from 'vuex';
-    // import {types} from '../../../../store'
     import CodeMirror from '@/pages/components/CodeMirror.vue'
-    // import storage from '@/utils/storage'
     import {FormMixin} from '@/pages/components/mixins'
-    // import {JUDGE_STATUS, CONTEST_STATUS, buildProblemCodeKey} from '@/utils/constants'
     import api from '@/pages/api'
     import {pie, largePie} from './chartData'
 
@@ -315,16 +312,14 @@
         //     }
         // },
         mounted() {
-            // this.$store.commit(types.CHANGE_CONTEST_ITEM_VISIBLE, {menu: false});
             this.init()
         },
         methods: {
             ...mapActions(['changeDomTitle']),
+            // 初始化所有信息
             init() {
                 this.$Loading.start();
-                // this.contestID = this.$route.params.contestID;
                 this.problemID = this.$route.params.problemID;
-                // let func = this.$route.name === 'problem-details' ? 'getProblem' : 'getContestProblem';
                 api.getProblem(this.problemID).then(res => {
                     if (res.data.status) {
                         this.$Loading.finish();
@@ -332,49 +327,26 @@
                         this.changeDomTitle({title: problem.title});
                         this.problem = problem;
                         this.code = problem.template;
-                        api.getSolutions(this.problem.id)
-                            .then(response => {
-                                if (response.data.status) {
-                                    this.solutions = response.data.object;
-                                }
-                                this.changePie()
-                            }).catch(error => {
-                            this.$Notice.error({
-                                title: '做题记录获取失败',
-                                desc: error
-                            })
-
-                        })
                     }
-                    // TODO子任务之后再说
-                    // api.submissionExists(problem.id).then(res => {
-                    //     this.submissionExists = res.data.data
-                    // });
-                    // problem.languages = problem.languages.sort();
-                    // this.changePie(problem);
-                    // 在beforeRouteEnter中修改了, 说明本地有code，无需加载template
-                    // if (this.code !== '') {
-                    //     return 0
-                    // }
-                    // try to load problem template
-                    // this.language = this.problem.languages[0];
-                    // let template = this.problem.template;
-                    // if (template && template[this.language]) {
-                    //     this.code = template[this.language]
-                    // }
                 }, () => {
                     this.$Loading.error()
                 });
+
+                api.getSolutions(this.problemID)
+                    .then(response => {
+                        if (response.data.status) {
+                            this.solutions = response.data.object;
+                        }
+                        this.changePie()
+                    }).catch(error => {
+                    this.$Notice.error({
+                        title: '做题记录获取失败',
+                        desc: error
+                    })
+
+                })
             },
             changePie() {
-                // 只显示特定的一些状态
-                // for (let k in problemData.statistic_info) {
-                //     if (filtedStatus.indexOf(k) === -1) {
-                //         delete problemData.statistic_info[k]
-                //     }
-                // }
-                // let acNum = problemData.accepted_number;
-
                 api.getSolutionInfo(this.problem.id)
                     .then(response => {
                         if (response.data.status) {
@@ -389,11 +361,13 @@
                             let data2 = JSON.parse(JSON.stringify(data));
                             data2[1].selected = true;
                             this.largePie.series[1].data = data2;
-
                         }
 
                     }).catch(error => {
-
+                    this.$Notice.error({
+                        title: 'Fail',
+                        desc: error
+                    })
                 });
 
 
@@ -418,69 +392,30 @@
             handleRoute(route) {
                 this.$router.push(route)
             },
-            // onChangeLang(newLang) {
-            //     if (this.problem.template[newLang]) {
-            //         if (this.code.trim() === '') {
-            //             this.code = this.problem.template[newLang]
-            //         }
-            //     }
-            //     this.language = newLang
-            // },
             onChangeTheme(newTheme) {
                 this.theme = newTheme
             },
-
             onResetToTemplate() {
                 this.$Modal.confirm({
                     content: 'Are you sure you want to reset your code?',
                     onOk: () => {
-                        alert('调试')
-                        // let template = this.problem.template;
-                        // if (template && template[this.language]) {
-                        //     this.code = template[this.language]
-                        // }
+                        this.init();
                     }
                 })
             },
-            // checkSubmissionStatus() {
-            //     // 使用setTimeout避免一些问题
-            //     if (this.refreshStatus) {
-            //         // 如果之前的提交状态检查还没有停止,则停止,否则将会失去timeout的引用造成无限请求
-            //         clearTimeout(this.refreshStatus)
-            //     }
-            //     const checkStatus = () => {
-            //         let id = this.submissionId;
-            //         api.getSubmission(id).then(res => {
-            //             this.result = res.data.data;
-            //             if (Object.keys(res.data.data.statistic_info).length !== 0) {
-            //                 this.submitting = false;
-            //                 this.submitted = false;
-            //                 clearTimeout(this.refreshStatus);
-            //                 this.init()
-            //             } else {
-            //                 this.refreshStatus = setTimeout(checkStatus, 2000)
-            //             }
-            //         }, res => {
-            //             this.submitting = false;
-            //             clearTimeout(this.refreshStatus)
-            //         })
-            //     };
-            //     this.refreshStatus = setTimeout(checkStatus, 2000)
-            // },
-            //
             submitCode() {
+                if (this.submitted) {
+                    this.submit_color = 'primary';
+                    this.submitted = false;
+                    this.init();
+                    return 0;
+                }
+
                 if (this.code.trim() === '') {
                     this.$error('Code can not be empty');
                     return
                 }
 
-                if (this.submitted) {
-                    this.submit_color = 'primary';
-                    this.submitted = false;
-                    return 0;
-                }
-                // this.submissionId = '';
-                // this.result = {result: 9};
                 this.submit_color = 'warning';
                 this.submitting = true;
                 this.submitted = true;
@@ -488,6 +423,7 @@
                     id: this.problem.id,
                     code: this.code,
                 };
+
                 api.doSubmitSolution(this.problem.id, this.code)
                     .then(response => {
                         const info = () => {
@@ -598,41 +534,10 @@
         },
         computed: {
             ...mapGetters(['isAuthenticated']),
-
             user() {
                 return this.isAuthenticated;
-            }            // contest() {
-            //     return this.$store.state.contest.contest
-            // },
-            // contestEnded() {
-            //     return this.contestStatus === CONTEST_STATUS.ENDED
-            // },
-            // submissionStatus() {
-            //     return {
-            //         text: JUDGE_STATUS[this.result.result]['name'],
-            //         color: JUDGE_STATUS[this.result.result]['color']
-            //     }
-            // },
-            // submissionRoute() {
-            //     if (this.contestID) {
-            //         return {name: 'contest-submission-list', query: {problemID: this.problemID}}
-            //     } else {
-            //         return {name: 'submission-list', query: {problemID: this.problemID}}
-            //     }
-            // }
+            }
         },
-        // beforeRouteLeave(to, from, next) {
-        //     // 防止切换组件后仍然不断请求
-        //     clearInterval(this.refreshStatus);
-        //
-        //     this.$store.commit(types.CHANGE_CONTEST_ITEM_VISIBLE, {menu: true});
-        //     storage.set(buildProblemCodeKey(this.problem._id, from.params.contestID), {
-        //         code: this.code,
-        //         language: this.language,
-        //         theme: this.theme
-        //     });
-        //     next()
-        // },
         watch: {
             '$route'() {
                 this.init()

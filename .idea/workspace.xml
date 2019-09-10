@@ -2,7 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85571b39-d2a6-483d-b1a6-c9c1a475c395" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/public/template.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/template.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/pages/components/Highlight.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/pages/views/submission/SubmissionDetails.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/pages/views/submission/SubmissionList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/ProblemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/ProblemController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/UtilController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/UtilController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SolutionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SolutionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/pages/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/pages/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/pages/components/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/pages/components/NavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/pages/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/pages/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/pages/router/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/pages/router/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/pages/views/home/Announcement.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/pages/views/home/Announcement.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/pages/views/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/pages/views/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/pages/views/problem/Problem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/pages/views/problem/Problem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/pages/views/problem/ProblemList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/pages/views/problem/ProblemList.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,20 +62,6 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="verilog_oj_ustb: schema" type="76f4a085:MysqlImplModel$Schema" />
       </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="verilog_oj_ustb@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="verilog_oj_ustb: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="batches: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="verilog_oj_ustb@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="verilog_oj_ustb: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="users: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
     </expand>
     <select />
   </component>
@@ -67,8 +72,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="XSLT Stylesheet" />
-        <option value="Vue Single File Component" />
         <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
@@ -183,7 +188,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/pages/views/help" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/pages/components" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -197,19 +202,19 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/pages/components" />
+      <recent name="$PROJECT_DIR$/resources/pages/views" />
+      <recent name="$PROJECT_DIR$/resources/pages/views/help" />
+      <recent name="$PROJECT_DIR$/resources/views/admin/tools" />
+      <recent name="$PROJECT_DIR$/resources/pages/views/problem" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/database/migrations" />
       <recent name="$PROJECT_DIR$/database/factories" />
       <recent name="$PROJECT_DIR$/public/js" />
       <recent name="$PROJECT_DIR$/resources/views/admin" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/pages/views/help" />
-      <recent name="$PROJECT_DIR$/resources/views/admin/tools" />
-      <recent name="$PROJECT_DIR$/resources/pages/views/problem" />
-      <recent name="$PROJECT_DIR$/resources/pages/components" />
-      <recent name="$PROJECT_DIR$/public/js" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -272,6 +277,7 @@
       <workItem from="1567782265055" duration="67000" />
       <workItem from="1567995318319" duration="3089000" />
       <workItem from="1567998984732" duration="1914000" />
+      <workItem from="1568031717918" duration="5424000" />
     </task>
     <servers />
   </component>

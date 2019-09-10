@@ -151,8 +151,9 @@ class ProblemController extends AdminController
   }
 
   /**
-   * @param Content $content
-   * @param Problem $problem
+   * 创建题目补全的html页面
+   * @param Content $content 使用content去构造html页面
+   * @param Problem $problem 引入问题使用query;
    * @return Content
    * 对应的补全题目页面
    */
@@ -174,6 +175,13 @@ class ProblemController extends AdminController
       });
   }
 
+  /**
+   * request 方式传入 id, top_module,stim 等三个参数
+   * id : 在本次测评中并没有实际用途
+   * top_module: 在modelsim仿真过程中的模板模块
+   * stim: stimulation是仿真过程当中使用的激励文件
+   * @return array|false|string 仿真结果
+   */
   public function stim()
   {
     $id = rq('id');
@@ -188,27 +196,29 @@ class ProblemController extends AdminController
     if (!$stim) {
       return make_re()->error('stim is required');
     }
-
-
+    //构造 仿真参数
     $params = array(
       'top_module' => $top_module,
       'stim' => $stim
     );
-
     return post('http://127.0.0.1:33778/solve', $params);
   }
 
   /**
-   * @param Problem $problem
-   * @return array
+   * 完成创建题目的函数
+   * top_module, stim, wavedrom, svg等参数通过request的方式传入参数
+   * @param Problem $problem 引入problem使用
+   * @return array 创建题目的结果
    * 完成项目项目创建
    */
   public function complete(Problem $problem)
   {
+    // id是题目id
     $id = rq('id');
     if (!$id) {
       return make_re()->error('id is required');
     }
+    // 查找到该题目
     $p = $problem->where('id', $id)->first();
     if (!$p) {
       return make_re()->error('problem not exists');
@@ -233,6 +243,8 @@ class ProblemController extends AdminController
     $p->stimulation = $stim;
     $p->wavedrom = $wavedrom;
     $p->complete = true;
+
+    //有就赋值，没有就算了
     if ($svg) {
       $p->svg = $svg;
     }

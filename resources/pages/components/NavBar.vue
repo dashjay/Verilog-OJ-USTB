@@ -1,86 +1,89 @@
 <template>
-    <div id="header">
-        <Menu theme="light" mode="horizontal" @on-select="handleRoute" :active-name="activeMenu" class="oj-menu">
-            <div class="logo"><span>
+  <div id="header">
+    <Menu theme="light" mode="horizontal" @on-select="handleRoute" :active-name="activeMenu" class="oj-menu">
+      <div class="logo"><span>
                 {{website.title}}
             </span></div>
-            <Menu-item name="/">
-                <Icon type="home"></Icon>
-                {{$t('m.Home')}}
-            </Menu-item>
-            <Menu-item name="/problems">
-                <Icon type="ios-keypad"></Icon>
-                {{$t('m.NavProblems')}}
-            </Menu-item>
-            <!--            <Menu-item name="/contests">-->
-            <!--                <Icon type="trophy"></Icon>-->
-            <!--                {{$t('m.Contests')}}-->
-            <!--            </Menu-item>-->
-            <Menu-item name="/rank">
-                <Icon type="ios-pulse-strong"></Icon>
-                {{$t('m.Rank')}}
-            </Menu-item>
-            <!--            <Submenu name="rank">-->
-            <!--                <template slot="title">-->
-            <!--                    <Icon type="podium"></Icon>-->
-            <!--                    {{$t('m.Rank')}}-->
-            <!--                </template>-->
-            <!--                <Menu-item name="/acm-rank">-->
-            <!--                    {{$t('m.ACM_Rank')}}-->
-            <!--                </Menu-item>-->
-            <!--                <Menu-item name="/oi-rank">-->
-            <!--                    {{$t('m.OI_Rank')}}-->
-            <!--                </Menu-item>-->
-            <!--            </Submenu>-->
-            <Submenu name="about">
-                <template slot="title">
-                    <Icon type="information-circled"></Icon>
-                    {{$t('m.About')}}
-                </template>
-                <Menu-item name="/judger">
-                    {{$t('m.Judger')}}
-                </Menu-item>
-                <Menu-item name="/FAQ">
-                    {{$t('m.FAQ')}}
-                </Menu-item>
-            </Submenu>
-            <template v-if="!isAuthenticated">
-<!--                {{modalStatus}}-->
-                <div class="btn-menu">
-                    <Button
-                            ref="loginBtn"
-                            shape="circle"
-                            @click="handleBtnClick('login')">{{$t('m.Login')}}
-                    </Button>
-                    <Button
-                            v-if="website.allow_register"
-                            shape="circle"
-                            @click="handleBtnClick('register')"
-                            style="margin-left: 5px;">{{$t('m.Register')}}
-                    </Button>
-                </div>
-            </template>
-            <template v-else>
-                <Dropdown class="drop-menu" @on-click="handleRoute" placement="bottom" trigger="click">
-                    <Button class="drop-menu-title">{{ user.username }}
-                        <Icon type="arrow-down-b"></Icon>
-                    </Button>
-                    <Dropdown-menu slot="list">
-                        <Dropdown-item name="/user-home">{{$t('m.MyHome')}}</Dropdown-item>
-                        <Dropdown-item name="/status?myself=1">{{$t('m.MySubmissions')}}</Dropdown-item>
-                        <Dropdown-item name="/setting">{{$t('m.Settings')}}</Dropdown-item>
-                        <!--                        <Dropdown-item v-if="isAdminRole" name="/admin">{{$t('m.Management')}}</Dropdown-item>-->
-                        <Dropdown-item divided name="/logout">{{$t('m.Logout')}}</Dropdown-item>
-                    </Dropdown-menu>
-                </Dropdown>
-            </template>
-        </Menu>
-        <Modal v-model="modalVisible" :width="400">
-            <div slot="header" class="modal-title">{{modalStatus.title}}</div>
-            <component :is="modalStatus.mode" v-if="modalVisible"></component>
-            <div slot="footer" style="display: none"></div>
-        </Modal>
-    </div>
+      <Menu-item name="/">
+        <Icon type="home"></Icon>
+        {{$t('m.Home')}}
+      </Menu-item>
+      <Menu-item name="/problems">
+        <Icon type="ios-keypad"></Icon>
+        {{$t('m.NavProblems')}}
+      </Menu-item>
+      <!--            <Menu-item name="/contests">-->
+      <!--                <Icon type="trophy"></Icon>-->
+      <!--                {{$t('m.Contests')}}-->
+      <!--            </Menu-item>-->
+      <Menu-item name="/rank">
+        <Icon type="ios-pulse-strong"></Icon>
+        {{$t('m.Rank')}}
+      </Menu-item>
+      <!--            <Submenu name="rank">-->
+      <!--                <template slot="title">-->
+      <!--                    <Icon type="podium"></Icon>-->
+      <!--                    {{$t('m.Rank')}}-->
+      <!--                </template>-->
+      <!--                <Menu-item name="/acm-rank">-->
+      <!--                    {{$t('m.ACM_Rank')}}-->
+      <!--                </Menu-item>-->
+      <!--                <Menu-item name="/oi-rank">-->
+      <!--                    {{$t('m.OI_Rank')}}-->
+      <!--                </Menu-item>-->
+      <!--            </Submenu>-->
+      <Submenu name="about">
+        <template slot="title">
+          <Icon type="information-circled"></Icon>
+          {{$t('m.About')}}
+        </template>
+        <Menu-item name="/judger">
+          {{$t('m.Judger')}}
+        </Menu-item>
+        <Menu-item name="/FAQ">
+          {{$t('m.FAQ')}}
+        </Menu-item>
+      </Submenu>
+      <Menu-item name="/login" v-if="!this.isAuthenticated">
+        <p style="color: red">未登录只能使用部分服务</p>
+      </Menu-item>
+      <template v-if="!this.isAuthenticated">
+        <!--                {{modalStatus}}-->
+        <div class="btn-menu">
+          <Button
+            ref="loginBtn"
+            shape="circle"
+            @click="handleBtnClick('login')">{{$t('m.Login')}}
+          </Button>
+          <Button
+            v-if="website.allow_register"
+            shape="circle"
+            @click="handleBtnClick('register')"
+            style="margin-left: 5px;">{{$t('m.Register')}}
+          </Button>
+        </div>
+      </template>
+      <template v-else>
+        <Dropdown class="drop-menu" @on-click="handleRoute" placement="bottom" trigger="click">
+          <Button class="drop-menu-title">{{ user.username }}
+            <Icon type="arrow-down-b"></Icon>
+          </Button>
+          <Dropdown-menu slot="list">
+            <Dropdown-item name="/user-home">{{$t('m.MyHome')}}</Dropdown-item>
+            <Dropdown-item name="/status?myself=1">{{$t('m.MySubmissions')}}</Dropdown-item>
+            <Dropdown-item name="/setting">{{$t('m.Settings')}}</Dropdown-item>
+            <!--                        <Dropdown-item v-if="isAdminRole" name="/admin">{{$t('m.Management')}}</Dropdown-item>-->
+            <Dropdown-item divided name="/logout">{{$t('m.Logout')}}</Dropdown-item>
+          </Dropdown-menu>
+        </Dropdown>
+      </template>
+    </Menu>
+    <Modal v-model="modalVisible" :width="400">
+      <div slot="header" class="modal-title">{{modalStatus.title}}</div>
+      <component :is="modalStatus.mode" v-if="modalVisible"></component>
+      <div slot="footer" style="display: none"></div>
+    </Modal>
+  </div>
 </template>
 
 <script>
@@ -102,20 +105,22 @@
             ...mapActions(['getProfile', 'changeModalStatus', 'clearProfile']),
 
             handleRoute(route) {
-                if (this.$route.path === route) {
-                    return 0;
-                }
-                if (route === '/judger') {
-                    window.location.href = 'https://github.com/dashjay/Verilog-Judge-USTB'
-                }
-                if (route === '/logout') {
-                    this.Logout();
-                    window.location.reload();
-                }
-                if (route && route.indexOf('admin') < 0) {
-                    this.$router.push(route);
-                } else {
-                    window.open('/admin/')
+                switch (route) {
+                    case this.$route.path:
+                        return 0;
+                    case '/judger':
+                        window.location.href = 'https://github.com/dashjay/Verilog-Judge-USTB'
+                        break;
+                    case '/login':
+                        this.handleBtnClick('login');
+                        break;
+                    case '/logout':
+                        this.Logout();
+                        window.location.reload();
+                        break;
+                    default:
+                        this.$router.push(route);
+                        break;
                 }
             },
             handleBtnClick(mode) {
@@ -150,51 +155,51 @@
 </script>
 
 <style lang="less" scoped>
-    #header {
-        min-width: 1100px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 60px;
-        width: 100%;
-        z-index: 1000;
-        background-color: #fff;
-        box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+  #header {
+    min-width: 1100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 100%;
+    z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
 
-        .oj-menu {
-            background: #fdfdfd;
-        }
-
-        .logo {
-            margin-left: 2%;
-            margin-right: 2%;
-            font-size: 20px;
-            float: left;
-            line-height: 60px;
-        }
-
-        .drop-menu {
-            float: right;
-            margin-right: 30px;
-            position: absolute;
-            right: 10px;
-
-            &-title {
-                font-size: 18px;
-            }
-        }
-
-        .btn-menu {
-            font-size: 16px;
-            float: right;
-            margin-right: 10px;
-        }
+    .oj-menu {
+      background: #fdfdfd;
     }
 
-    .modal {
-        &-title {
-            font-size: 18px;
-            font-weight: 600;
-        }
+    .logo {
+      margin-left: 2%;
+      margin-right: 2%;
+      font-size: 20px;
+      float: left;
+      line-height: 60px;
     }
+
+    .drop-menu {
+      float: right;
+      margin-right: 30px;
+      position: absolute;
+      right: 10px;
+
+      &-title {
+        font-size: 18px;
+      }
+    }
+
+    .btn-menu {
+      font-size: 16px;
+      float: right;
+      margin-right: 10px;
+    }
+  }
+
+  .modal {
+    &-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
 </style>

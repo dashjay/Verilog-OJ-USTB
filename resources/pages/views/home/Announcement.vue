@@ -82,10 +82,10 @@
                 api.getAnnouncement().then(res => {
                     if (res.data.status) {
                         this.announcements = res.data.object;
-                        this.$Notice.info({
-                            title: 'announcement get successfully',
-                            desc: res.data.msg
-                        })
+                        // this.$Notice.info({
+                        //     title: 'announcement get successfully',
+                        //     desc: res.data.msg
+                        // })
                     } else {
                         this.$Notice.error({
                             title: 'announcement get fail',

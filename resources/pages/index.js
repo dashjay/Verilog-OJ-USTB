@@ -44,7 +44,7 @@ Vue.config.productionTip = false;
 
 // 注册全局消息提示
 Vue.prototype.$Message.config({
-    duration: 2
+  duration: 2
 });
 
 Vue.prototype.$error = (s) => Vue.prototype.$Message.error(s);
@@ -55,9 +55,9 @@ Vue.prototype.$success = (s) => Vue.prototype.$Message.success(s);
 
 
 const app = new Vue({
-    router,
-    store,
-    i18n,
-    render: h => h(App),
-    el: '#app',
+  router,
+  store,
+  i18n,
+  render: h => h(App),
+  el: '#app',
 });

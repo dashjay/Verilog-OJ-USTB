@@ -44,7 +44,7 @@ class UtilController extends AdminController
     return $res;
   }
 
-
+  // simditor上传图片的方式
   public function upload(Request $request)
   {
     if ($request->hasFile('upload_file')) {

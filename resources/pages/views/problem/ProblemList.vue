@@ -1,77 +1,77 @@
 <template>
-    <Row type="flex" :gutter="18">
-        <Col :span=19>
-            <Kane shadow>
-                <div slot="title">Problem List</div>
-                <div slot="extra">
-                    <ul class="filter">
-                        <li>
-                            <Dropdown @on-click="filterByDifficulty">
+  <Row type="flex" :gutter="18">
+    <Col :span=19>
+      <Kane shadow>
+        <div slot="title">Problem List</div>
+        <div slot="extra">
+          <ul class="filter">
+            <li>
+              <Dropdown @on-click="filterByDifficulty">
               <span>{{query.difficulty === '' ? 'Difficulty' : query.difficulty}}
                 <Icon type="ios-arrow-down"/>
               </span>
-                                <Dropdown-menu slot="list">
-                                    <Dropdown-item name="">All</Dropdown-item>
-                                    <Dropdown-item name="Low">Low</Dropdown-item>
-                                    <Dropdown-item name="Mid">Mid</Dropdown-item>
-                                    <Dropdown-item name="High">High</Dropdown-item>
-                                </Dropdown-menu>
-                            </Dropdown>
-                        </li>
-                        <li>
-                            <i-switch size="large" @on-change="handleTagsVisible">
-                                <span slot="open">Tags</span>
-                                <span slot="close">Tags</span>
-                            </i-switch>
-                        </li>
-                        <li>
-                            <label>
-                                <Input v-model="query.keyword"
-                                       @on-enter="filterByKeyword"
-                                       @on-click="filterByKeyword"
-                                       placeholder="keyword"
-                                       icon="ios-search-strong"/>
-                            </label>
-                        </li>
-                        <li>
-                            <Button type="primary" @click="onReset">
-                                <Icon type="refresh"></Icon>
-                                Reset
-                            </Button>
-                        </li>
-                    </ul>
-                </div>
-                <Table style="width: 100%; font-size: 16px;"
-                       :columns="problemTableColumns"
-                       :data="problemList"
-                       :loading="loadings.table"
-                       disabled-hover></Table>
-            </Kane>
-            <Pagination :total="total" :page-size="limit" @on-change="pushRouter"
-                        :current.sync="query.page"></Pagination>
+                <Dropdown-menu slot="list">
+                  <Dropdown-item name="">All</Dropdown-item>
+                  <Dropdown-item name="Low">Low</Dropdown-item>
+                  <Dropdown-item name="Mid">Mid</Dropdown-item>
+                  <Dropdown-item name="High">High</Dropdown-item>
+                </Dropdown-menu>
+              </Dropdown>
+            </li>
+            <li>
+              <i-switch size="large" @on-change="handleTagsVisible">
+                <span slot="open">Tags</span>
+                <span slot="close">Tags</span>
+              </i-switch>
+            </li>
+            <li>
+              <label>
+                <Input v-model="query.keyword"
+                       @on-enter="filterByKeyword"
+                       @on-click="filterByKeyword"
+                       placeholder="keyword"
+                       icon="ios-search-strong"/>
+              </label>
+            </li>
+            <li>
+              <Button type="primary" @click="onReset">
+                <Icon type="refresh"></Icon>
+                Reset
+              </Button>
+            </li>
+          </ul>
+        </div>
+        <Table style="width: 100%; font-size: 16px;"
+               :columns="problemTableColumns"
+               :data="problemList"
+               :loading="loadings.table"
+               disabled-hover></Table>
+      </Kane>
+      <Pagination :total="total" :page-size="limit" @on-change="pushRouter"
+                  :current.sync="query.page"></Pagination>
 
-        </Col>
+    </Col>
 
-        <Col :span="5">
-            <Panel :padding="10">
-                <div slot="title" class="taglist-title">Tags</div>
-                <Button v-for="tag in tagList"
-                        :key="tag.name"
-                        @click="filterByTag(tag.name)"
-                        type="primary"
-                        :disabled="query.tag === tag.name"
-                        shape="circle"
-                        class="tag-btn">{{tag.name}}
-                </Button>
+    <Col :span="5">
+      <Panel :padding="10">
+        <div slot="title" class="taglist-title">Tags</div>
+        <Button v-for="tag in tagList"
+                :key="tag.name"
+                @click="filterByTag(tag.name)"
+                type="primary"
+                :disabled="query.tag === tag.name"
+                shape="circle"
+                class="tag-btn">{{tag.name}}
+        </Button>
 
-                <Button long id="pick-one" @click="pickone">
-                    <Icon type="md-shuffle"/>
-                    Pick one
-                </Button>
-            </Panel>
-            <Spin v-if="loadings.tag" fix size="large"></Spin>
-        </Col>
-    </Row>
+        <Button long id="pick-one" @click="pickone">
+          <Icon type="md-shuffle"/>
+          Pick one
+        </Button>
+      </Panel>
+      <Spin v-if="loadings.tag" fix size="large"></Spin>
+    </Col>
+  </Row>
 </template>
 
 <script>
@@ -159,12 +159,6 @@
                         title: 'Total',
                         key: 'total'
                     },
-                    // {
-                    //     title: 'AC Rate',
-                    //     render: (h, params) => {
-                    //         return h('span', this.getACRate(params.row.accepted_number, params.row.submission_number))
-                    //     }
-                    // }
                 ],
                 problemList: [],
                 limit: 20,
@@ -315,17 +309,17 @@
 </script>
 
 <style scoped lang="less">
-    .taglist-title {
-        margin-left: -10px;
-        margin-bottom: -10px;
-    }
+  .taglist-title {
+    margin-left: -10px;
+    margin-bottom: -10px;
+  }
 
-    .tag-btn {
-        margin-right: 5px;
-        margin-bottom: 10px;
-    }
+  .tag-btn {
+    margin-right: 5px;
+    margin-bottom: 10px;
+  }
 
-    #pick-one {
-        margin-top: 10px;
-    }
+  #pick-one {
+    margin-top: 10px;
+  }
 </style>

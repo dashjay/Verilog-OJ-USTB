@@ -3,6 +3,9 @@
 namespace App\Admin\Controllers;
 
 use App\User;
+use Box\Spout\Common\Exception\IOException;
+use Box\Spout\Common\Exception\UnsupportedTypeException;
+use Box\Spout\Reader\Exception\ReaderNotOpenedException;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -87,16 +90,28 @@ class UserController extends AdminController
     return $form;
   }
 
+  /**
+   * 批量添加用户的方式
+   * 命名为 batch 的 xls 文件会通过 request 传入
+   * @return array
+   * @throws IOException
+   * @throws UnsupportedTypeException
+   * @throws ReaderNotOpenedException
+   */
   public function batchadd()
   {
+    //
     $file = rqf('batch');
     if (!$file) {
       return make_re()->error('上传了个屁');
     }
     $count = 0;
+    // 调用FastExcel模块来读取xls文件
     $collection = (new FastExcel)->import($file);
 
+    // 遍历每一行
     foreach ($collection as $u) {
+      //创建一个新用户
       $user = new User();
       $user->user_batch_add($u['username'], $u['name'], $u['password'], $u['class']);
       $count++;
@@ -105,6 +120,7 @@ class UserController extends AdminController
   }
 
 
+  // 返回模板的方式，暂时没有使用
   public function get_template()
   {
     $list = collect([
